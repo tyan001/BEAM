@@ -4,6 +4,8 @@ from sdv.single_table import CTGANSynthesizer
 from sdv.metadata import Metadata
 from sdv.evaluation.single_table import evaluate_quality
 from typing import List, Dict, Optional, Tuple
+import joblib
+
 
 
 def train_synthesizer(df: pd.DataFrame, metadata: Metadata, config: Dict, enable_gpu: bool = False) -> CTGANSynthesizer:
@@ -113,7 +115,7 @@ if __name__ == "__main__":
         quality_report = evaluate_quality(df, synthetic_data, metadata)
 
         synthesizer.save(f"ctgan_model_{config_name}.pkl")
-
+        
         # Collect all metrics
         metrics = {
             'config_name': config_name,

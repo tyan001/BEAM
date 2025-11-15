@@ -1,78 +1,0 @@
-/opt/conda/lib/python3.12/site-packages/ctgan/synthesizers/_utils.py:16: FutureWarning: `cuda` parameter is deprecated and will be removed in a future release. Please use `enable_gpu` instead.
-  warnings.warn(
-Training CTGAN with configuration: baseline
-Generating report ...
-
-|          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 11/11 [00:00<00:00, 513.13it/s]|
-Column Shapes Score: 87.87%
-
-|          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████▉   | 38/55 [00:00<00:00, 373.66it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 55/55 [00:00<00:00, 385.95it/s]|
-Column Pair Trends Score: 87.22%
-
-/opt/conda/lib/python3.12/site-packages/ctgan/synthesizers/_utils.py:16: FutureWarning: `cuda` parameter is deprecated and will be removed in a future release. Please use `enable_gpu` instead.
-  warnings.warn(
-Overall Score (Average): 87.54%
-
-Training CTGAN with configuration: small_model
-Generating report ...
-
-|          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 11/11 [00:00<00:00, 505.50it/s]|
-Column Shapes Score: 89.05%
-
-|          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███████▎  | 40/55 [00:00<00:00, 395.28it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 55/55 [00:00<00:00, 401.48it/s]|
-Column Pair Trends Score: 86.94%
-
-/opt/conda/lib/python3.12/site-packages/ctgan/synthesizers/_utils.py:16: FutureWarning: `cuda` parameter is deprecated and will be removed in a future release. Please use `enable_gpu` instead.
-  warnings.warn(
-Overall Score (Average): 88.0%
-
-Training CTGAN with configuration: large_model
-Generating report ...
-
-|          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 11/11 [00:00<00:00, 377.49it/s]|
-Column Shapes Score: 85.74%
-
-|          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███████▎  | 40/55 [00:00<00:00, 393.01it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 55/55 [00:00<00:00, 400.02it/s]|
-Column Pair Trends Score: 85.36%
-
-/opt/conda/lib/python3.12/site-packages/ctgan/synthesizers/_utils.py:16: FutureWarning: `cuda` parameter is deprecated and will be removed in a future release. Please use `enable_gpu` instead.
-  warnings.warn(
-Overall Score (Average): 85.55%
-
-Training CTGAN with configuration: deep_model
-Generating report ...
-
-|          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 11/11 [00:00<00:00, 375.51it/s]|
-Column Shapes Score: 85.71%
-
-|          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████▌   | 36/55 [00:00<00:00, 358.88it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 55/55 [00:00<00:00, 367.38it/s]|
-Column Pair Trends Score: 86.59%
-
-/opt/conda/lib/python3.12/site-packages/ctgan/synthesizers/_utils.py:16: FutureWarning: `cuda` parameter is deprecated and will be removed in a future release. Please use `enable_gpu` instead.
-  warnings.warn(
-Overall Score (Average): 86.15%
-
-Training CTGAN with configuration: high_lr
-Generating report ...
-
-|          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 11/11 [00:00<00:00, 547.95it/s]|
-Column Shapes Score: 87.52%
-
-|          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |███████   | 39/55 [00:00<00:00, 386.78it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 55/55 [00:00<00:00, 387.77it/s]|
-Column Pair Trends Score: 87.25%
-
-/opt/conda/lib/python3.12/site-packages/ctgan/synthesizers/_utils.py:16: FutureWarning: `cuda` parameter is deprecated and will be removed in a future release. Please use `enable_gpu` instead.
-  warnings.warn(
-Overall Score (Average): 87.39%
-
-Training CTGAN with configuration: large_batch
-Generating report ...
-
-|          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |          | 0/11 [00:00<?, ?it/s]|(1/2) Evaluating Column Shapes: |██████████| 11/11 [00:00<00:00, 424.99it/s]|
-Column Shapes Score: 83.94%
-
-|          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |          | 0/55 [00:00<?, ?it/s]|(2/2) Evaluating Column Pair Trends: |██████▉   | 38/55 [00:00<00:00, 377.74it/s]|(2/2) Evaluating Column Pair Trends: |██████████| 55/55 [00:00<00:00, 388.58it/s]|
-Column Pair Trends Score: 83.36%
-
-Overall Score (Average): 83.65%
-
