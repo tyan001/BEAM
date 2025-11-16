@@ -1,5 +1,5 @@
 def main():
-    print("Hello from beam!")
+    print("Hello from beam-ml!")
 
 
 if __name__ == "__main__":
