@@ -6,7 +6,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate synthetic data using a trained CTGAN model')
     parser.add_argument('--model', type=str, default='ctgan_model_small_model.pkl',
                         help='Path to the pickled CTGAN model file')
-    parser.add_argument('--n_samples', type=int, default=2200,
+    parser.add_argument('--n_samples', type=int, default=10000,
                         help='Number of synthetic samples to generate')
     parser.add_argument('--output', type=str, default='synthetic_data.csv',
                         help='Output CSV file name')
