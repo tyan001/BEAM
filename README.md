@@ -38,7 +38,7 @@ BEAM-ML/
 3. **Model Training**: Machine learning model development
 4. **Validation**: Performance evaluation and testing
 
-## 🙏 Acknowledgments
+## 🙏 Acknowledgements
 
 - 1FL ADRC for the original dataset structure
 - CTGAN developers for synthetic data generation tools
