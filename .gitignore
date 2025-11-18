@@ -5,9 +5,12 @@ build/
 dist/
 wheels/
 *.egg-info
-archive/
-*CLAUDE.md
-.ruff_cache/
 # Virtual environments
 .venv
 uv.lock
+# Files and Folders
+archive/
+*CLAUDE.md
+.ruff_cache/
+.vscode
+scrtips/results
