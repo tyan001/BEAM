@@ -4,13 +4,19 @@ version = "0.1.0"
 description = "BEAM Dependencies"
 readme = "README.md"
 requires-python = ">=3.12"
+# For ways to use environment uv sync should be for the dependencies and uv synv --groups dev for the dev dependencies.
 dependencies = [
-    "jupyter>=1.1.1",
     "matplotlib>=3.10.7",
     "numpy==2.2.6",
     "openpyxl>=3.1.5",
     "pandas>=2.3.3",
-    "ruff>=0.14.5",
     "scikit-learn>=1.7.2",
     "sdv>=1.29.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+    "jupyter>=1.1.1",
+    "ruff>=0.14.5",
 ]
