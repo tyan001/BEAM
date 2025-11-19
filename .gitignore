@@ -13,4 +13,4 @@ archive/
 *CLAUDE.md
 .ruff_cache/
 .vscode
-scripts/results
+*results

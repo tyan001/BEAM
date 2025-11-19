@@ -289,32 +289,109 @@ def save_results(
     print(f"Models: {', '.join(models)}")
 
 
+def get_diagnosis_config(grouping_strategy: str = "original"):
+    """
+    Get diagnosis order and combination map based on grouping strategy.
+    
+    Parameters:
+    -----------
+    grouping_strategy : str
+        "original" - Original 6 categories (no combination)
+        "scd_impaired" - Combine SCD and Impaired Not SCD/MCI
+        "nc_impaired" - Combine Normal Cognition and Impaired Not SCD/MCI
+    
+    Returns:
+    --------
+    tuple: (diagnosis_order, combination_map)
+    """
+    configs = {
+        "original": {
+            'diagnosis_order': [
+                'Normal cognition', 
+                'Subjective Cognitive Decline', 
+                'Impaired Not SCD/MCI',
+                'Early MCI', 
+                'Late MCI', 
+                'Dementia'
+            ],
+            'combination_map': None
+        },
+        "scd_impaired": {
+            'diagnosis_order': [
+                'Normal cognition', 
+                'SCD/Impaired',
+                'Early MCI', 
+                'Late MCI', 
+                'Dementia'
+            ],
+            'combination_map': {
+                'SCD/Impaired': ['Subjective Cognitive Decline', 'Impaired Not SCD/MCI']
+            }
+        },
+        "nc_impaired": {
+            'diagnosis_order': [
+                'NC/Impaired', 
+                'Subjective Cognitive Decline',
+                'Early MCI', 
+                'Late MCI', 
+                'Dementia'
+            ],
+            'combination_map': {
+                'NC/Impaired': ['Normal cognition', 'Impaired Not SCD/MCI']
+            }
+        }
+    }
+    
+    if grouping_strategy not in configs:
+        raise ValueError(f"Invalid grouping strategy: '{grouping_strategy}'. Must be one of: {list(configs.keys())}")
+    
+    config = configs[grouping_strategy]
+    return config['diagnosis_order'], config['combination_map']
+    
 
 if __name__ == "__main__":
     
     # Load data
-    df = pd.read_csv('../data/synthetic_data.csv')
+    df = pd.read_csv('data/synthetic_data.csv')
     
-    # Preprocess data
+    group_strategy = "original"  # Change this to "scd_impaired" or "nc_impaired" as needed
+    
+    diagnosis_order, combination_map = get_diagnosis_config(grouping_strategy="original")
+    
+    # # Preprocess data
     # diagnosis_order = ['Normal cognition', 'Subjective Cognitive Decline', 'Impaired Not SCD/MCI',
     #                    'Early MCI', 'Late MCI', 'Dementia']
     
-    # Combine categories as needed
-    # For example, if you want to combine 'Subjective Cognitive Decline' and 'Impaired Not SCD/MCI' into a single category called 'SCD/Impaired', you can do that as follows:
-    combination_map = {
-    'SCD/Impaired': ['Subjective Cognitive Decline', 'Impaired Not SCD/MCI'],
-    }
+    # # Combine categories as needed
+    # # For example, if you want to combine 'Subjective Cognitive Decline' and 'Impaired Not SCD/MCI' into a single category called 'SCD/Impaired', you can do that as follows:
+    # # combination_map = {
+    # # 'SCD/Impaired': ['Subjective Cognitive Decline', 'Impaired Not SCD/MCI'],
+    # # }
     
-    diagnosis_order = [
-        'Normal cognition', 
-        'SCD/Impaired',
-        'Early MCI', 
-        'Late MCI', 
-        'Dementia'
-    ]
+    # # diagnosis_order = [
+    # #     'Normal cognition', 
+    # #     'SCD/Impaired',
+    # #     'Early MCI', 
+    # #     'Late MCI', 
+    # #     'Dementia'
+    # # ]
     
-    df = combine_categories(df, combination_map, target_col='FL_UDSD')
-    ##################################################################### 
+    # # df = combine_categories(df, combination_map, target_col='FL_UDSD')
+    # ##################################################################### 
+    # combination_map = {
+    # 'NC/Impaired': ['Normal cognition', 'Impaired Not SCD/MCI'],
+    # }
+    
+    # diagnosis_order = [
+    #     'NC/Impaired', 
+    #     'Subjective Cognitive Decline',
+    #     'Early MCI', 
+    #     'Late MCI', 
+    #     'Dementia'
+    # ]
+    
+    # df = combine_categories(df, combination_map, target_col='FL_UDSD')
+    # #####################################################################
     
     processed_df = preprocess_data(df, target_col='FL_UDSD', diagnosis_order=diagnosis_order)
     processed_df.dropna(inplace=True) # Drop rows with missing values after preprocessing. Only complete cases will be used for feature search.
@@ -322,6 +399,9 @@ if __name__ == "__main__":
     # save the data statistics on classes and how many samples are in each class to a csv file
     class_counts = processed_df['FL_UDSD'].value_counts().reset_index()
     class_counts.columns = ['FL_UDSD', 'count']
+    
+    results_path = Path('results')
+    results_path.mkdir(parents=True, exist_ok=True)
     class_counts.to_csv('results/class_counts.csv', index=False)
     
     # No longer need this column for modeling
