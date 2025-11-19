@@ -26,9 +26,10 @@ We specifically employed **CTGAN** (Conditional Tabular GAN) for synthetic data 
 ## 📁 Repository Structure
 ```
 BEAM-ML/
-├── CTGAN/              # 🏭 Synthetic data generation scripts
 ├── data/               # 📊 Synthetic data
-├── scripts/            # 🤖 ML model implementations
+├── scripts/            # 🤖 Jupyter notebooks for prototyping the ML script
+    ├── CTGAN/          # 🏭 Synthetic data generation scripts
+feature_search.py       # 🔍 Comprehensive feature search script (main)
 ```
 
 ## 🔬 Methodology
