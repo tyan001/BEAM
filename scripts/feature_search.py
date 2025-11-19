@@ -6,7 +6,6 @@ from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score
 from itertools import combinations
 from tqdm import tqdm
 from pathlib import Path
-import openpyxl
 
 def preprocess_data(df: pd.DataFrame, target_col: str='FL_UDSD', diagnosis_order: list=None) -> pd.DataFrame:
     """
@@ -32,7 +31,7 @@ def preprocess_data(df: pd.DataFrame, target_col: str='FL_UDSD', diagnosis_order
     # Encode the target variable as an ordered categorical variable.    
     filter_df['FL_UDSD'] = pd.Categorical(filter_df['FL_UDSD'], categories=diagnosis_order, ordered=True)
     filter_df['FL_UDSD_cat'] = filter_df['FL_UDSD'].cat.codes 
-    filter_df.drop(columns=['FL_UDSD'], inplace=True)
+    
     
     return filter_df
 
@@ -202,6 +201,30 @@ def comprehensive_feature_search(
     return results_df
 
 
+def combine_categories(df: pd.DataFrame, combination_map: dict, target_col: str = 'FL_UDSD') -> pd.DataFrame:
+    """
+    Combine multiple categories in the target column into single categories.
+    
+    Args:
+        df: Input dataframe
+        target_col: Column containing categories to combine
+        combination_map: Dictionary where keys are new category names and values are lists of 
+                        categories to combine into that new category.
+                        Example: {'SCD/Impaired': ['Subjective Cognitive Decline', 'Impaired Not SCD/MCI'],
+                                 'Normal/SCD': ['Normal cognition', 'Subjective Cognitive Decline']}
+    
+    Returns:
+        pd.DataFrame: DataFrame with combined categories
+    """
+    df = df.copy()
+    
+    # Apply each combination
+    for new_category, old_categories in combination_map.items():
+        df[target_col] = df[target_col].replace(old_categories, new_category)
+    
+    return df
+
+
 def save_results(
     results_df: pd.DataFrame,
     output_dir: str,
@@ -273,11 +296,36 @@ if __name__ == "__main__":
     df = pd.read_csv('../data/synthetic_data.csv')
     
     # Preprocess data
-    diagnosis_order = ['Normal cognition', 'Subjective Cognitive Decline', 'Impaired Not SCD/MCI',
-                       'Early MCI', 'Late MCI', 'Dementia']
+    # diagnosis_order = ['Normal cognition', 'Subjective Cognitive Decline', 'Impaired Not SCD/MCI',
+    #                    'Early MCI', 'Late MCI', 'Dementia']
+    
+    # Combine categories as needed
+    # For example, if you want to combine 'Subjective Cognitive Decline' and 'Impaired Not SCD/MCI' into a single category called 'SCD/Impaired', you can do that as follows:
+    combination_map = {
+    'SCD/Impaired': ['Subjective Cognitive Decline', 'Impaired Not SCD/MCI'],
+    }
+    
+    diagnosis_order = [
+        'Normal cognition', 
+        'SCD/Impaired',
+        'Early MCI', 
+        'Late MCI', 
+        'Dementia'
+    ]
+    
+    df = combine_categories(df, combination_map, target_col='FL_UDSD')
+    ##################################################################### 
     
     processed_df = preprocess_data(df, target_col='FL_UDSD', diagnosis_order=diagnosis_order)
     processed_df.dropna(inplace=True) # Drop rows with missing values after preprocessing. Only complete cases will be used for feature search.
+    
+    # save the data statistics on classes and how many samples are in each class to a csv file
+    class_counts = processed_df['FL_UDSD'].value_counts().reset_index()
+    class_counts.columns = ['FL_UDSD', 'count']
+    class_counts.to_csv('results/class_counts.csv', index=False)
+    
+    # No longer need this column for modeling
+    processed_df.drop(columns=['FL_UDSD'], inplace=True)
     
     # Split into train and test sets
     train_df, test_df = train_test_split(processed_df, test_size=0.2, random_state=42, stratify=processed_df['FL_UDSD_cat'])
