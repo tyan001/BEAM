@@ -101,10 +101,60 @@ python generate_data.py --balance -n_samples 10000
 
 ```
 
-
 ### Project Output
 
 Results from feature search and model training are saved in the `results/` directory with detailed performance metrics and model comparisons.
+
+## 🌐 Web Application
+
+BEAM-ML includes a Flask web application that provides an interactive interface for predicting cognitive decline based on patient data.
+
+### Training the Model
+
+**Important:** Before running the web application, you must first train a model with desire features (edit in the train_specific_model.py) to generate the required pickle file:
+
+```bash
+# Train a Random Forest model (default)
+python train_specific_model.py --model rf --output-dir models
+
+# Or train a Logistic Regression model
+python train_specific_model.py --model lr --output-dir models
+```
+
+**What this does:**
+- Trains a classification model using selected features. by default is set to [MMSE, CDRSUM, CDRGLOB, HVLT_DR, LASSI_B_CR2, APOE, AMYLPET]
+- Evaluates model performance on train/test splits
+- Saves the trained model to `models/rf.pkl` (or `models/lr.pkl` for logistic regression)
+- The output folder contains:
+  - Trained model as a pickle file
+  - the testing dataset CSV to use as example
+  - Feature importance/coefficients
+
+### Running the Web Application
+
+Once you have trained the model and generated the pickle file, you can start the web application:
+
+```bash
+python app.py
+```
+
+The application will:
+- Load the trained model from `models/rf.pkl` using variable MODEL_PATH in app.py
+- Start a Flask server on `http://localhost:5000`
+- Provide a web interface for entering patient data and getting predictions
+
+**Features:**
+- Interactive form for entering biomarker and cognitive test values
+- Real-time predictions showing probability distribution across all diagnosis classes
+- Support for multiple cognitive decline categories:
+  - Normal cognition
+  - Subjective Cognitive Decline
+  - Impaired Not SCD/MCI
+  - Early MCI
+  - Late MCI
+  - Dementia
+
+**Note:** The web application expects the model pickle file at `models/rf.pkl`. Make sure this file exists before running the app.
 
 ## 🙏 Acknowledgements
 

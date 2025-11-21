@@ -29,12 +29,14 @@ FEATURE_DESCRIPTIONS = {
     'AMYLPET': 'Amyloid PET Status (0 or 1)'
 }
 
+
 @app.route('/')
 def home():
     return render_template('index.html',
-                         features=features,
-                         diagnosis_order=diagnosis_order,
-                         feature_descriptions=FEATURE_DESCRIPTIONS)
+                           features=features,
+                           diagnosis_order=diagnosis_order,
+                           feature_descriptions=FEATURE_DESCRIPTIONS)
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -76,6 +78,7 @@ def predict():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
