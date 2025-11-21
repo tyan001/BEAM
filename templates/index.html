@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cognitive Diagnosis Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .form-section h2 {
+        color: #667eea;
+        margin-bottom: 20px;
+        font-size: 1.5em;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+        font-weight: 600;
+        font-size: 0.9em;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .form-group small {
+        display: block;
+        margin-top: 3px;
+        color: #666;
+        font-size: 0.8em;
+      }
+
+      .btn-predict {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .btn-predict:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn-predict:active {
+        transform: translateY(0);
+      }
+
+      .results-section h2 {
+        color: #667eea;
+        margin-bottom: 20px;
+        font-size: 1.5em;
+      }
+
+      .prediction-result {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        display: none;
+      }
+
+      .prediction-result h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .prediction-result .predicted-class {
+        font-size: 1.8em;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      .chart-container {
+        position: relative;
+        height: 400px;
+        display: none;
+      }
+
+      .probability-list {
+        margin-top: 20px;
+        display: none;
+      }
+
+      .probability-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        margin-bottom: 8px;
+        background: #f5f5f5;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+
+      .probability-item.highest {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.2) 0%,
+          rgba(118, 75, 162, 0.2) 100%
+        );
+        border-left: 4px solid #764ba2;
+        font-weight: bold;
+      }
+
+      .probability-label {
+        flex: 1;
+      }
+
+      .probability-value {
+        font-weight: 600;
+        color: #667eea;
+      }
+
+      .loading {
+        display: none;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .loading.active {
+        display: block;
+      }
+
+      .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #667eea;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .error-message {
+        display: none;
+        padding: 15px;
+        background: #ff4444;
+        color: white;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .error-message.active {
+        display: block;
+      }
+
+      @media (max-width: 968px) {
+        .content-wrapper {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .example-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .btn-example {
+        padding: 8px 15px;
+        background: #f0f0f0;
+        border: 2px solid #667eea;
+        border-radius: 8px;
+        color: #667eea;
+        cursor: pointer;
+        font-size: 0.9em;
+        transition: all 0.3s;
+      }
+
+      .btn-example:hover {
+        background: #667eea;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cognitive Diagnosis Prediction Model</h1>
+
+      <div class="content-wrapper">
+        <!-- Input Form Section -->
+        <div class="card form-section">
+          <h2>Input Features</h2>
+
+          <div class="example-buttons">
+            <button class="btn-example" onclick="loadExample(1)">
+              Example 1
+            </button>
+            <button class="btn-example" onclick="loadExample(2)">
+              Example 2
+            </button>
+            <button class="btn-example" onclick="loadExample(3)">
+              Example 3
+            </button>
+            <button class="btn-example" onclick="clearForm()">Clear</button>
+          </div>
+
+          <form id="predictionForm">
+            <div class="form-group">
+              <label for="CDRSUM">CDRSUM</label>
+              <input
+                type="number"
+                step="0.01"
+                id="CDRSUM"
+                name="CDRSUM"
+                required
+              />
+              <small>Clinical Dementia Rating Sum of Boxes (0-18)</small>
+            </div>
+
+            <div class="form-group">
+              <label for="CDRGLOB">CDRGLOB</label>
+              <input
+                type="number"
+                step="0.01"
+                id="CDRGLOB"
+                name="CDRGLOB"
+                required
+              />
+              <small>Clinical Dementia Rating Global Score (0-3)</small>
+            </div>
+
+            <div class="form-group">
+              <label for="AMYLPET">AMYLPET</label>
+              <input
+                type="number"
+                step="1"
+                id="AMYLPET"
+                name="AMYLPET"
+                required
+              />
+              <small>Amyloid PET Status (0 or 1)</small>
+            </div>
+
+            <div class="form-group">
+              <label for="APOE">APOE</label>
+              <input type="number" step="1" id="APOE" name="APOE" required />
+              <small>APOE Genotype (0,1, or 2)</small>
+            </div>
+
+            <div class="form-group">
+              <label for="PTAU_217_CONCNTRTN">PTAU_217_CONCNTRTN</label>
+              <input
+                type="number"
+                step="0.000001"
+                id="PTAU_217_CONCNTRTN"
+                name="PTAU_217_CONCNTRTN"
+                required
+              />
+              <small>P-tau 217 Concentration</small>
+            </div>
+
+            <div class="form-group">
+              <label for="HVLT_DR">HVLT_DR</label>
+              <input
+                type="number"
+                step="0.01"
+                id="HVLT_DR"
+                name="HVLT_DR"
+                required
+              />
+              <small>Hopkins Verbal Learning Test - Delayed Recall</small>
+            </div>
+
+            <div class="form-group">
+              <label for="LASSI_B_CR1">LASSI_B_CR1</label>
+              <input
+                type="number"
+                step="0.01"
+                id="LASSI_B_CR1"
+                name="LASSI_B_CR1"
+                required
+              />
+              <small>LASSI-B Cued Recall 1</small>
+            </div>
+
+            <div class="form-group">
+              <label for="LASSI_B_CR2">LASSI_B_CR2</label>
+              <input
+                type="number"
+                step="0.01"
+                id="LASSI_B_CR2"
+                name="LASSI_B_CR2"
+                required
+              />
+              <small>LASSI-B Cued Recall 2</small>
+            </div>
+
+            <button type="submit" class="btn-predict">Predict Diagnosis</button>
+          </form>
+        </div>
+
+        <!-- Results Section -->
+        <div class="card results-section">
+          <h2>Prediction Results</h2>
+
+          <div class="error-message" id="errorMessage"></div>
+
+          <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 10px">Analyzing...</p>
+          </div>
+
+          <div class="prediction-result" id="predictionResult">
+            <h3>Predicted Diagnosis:</h3>
+            <div class="predicted-class" id="predictedClass"></div>
+          </div>
+
+          <div class="chart-container" id="chartContainer">
+            <canvas id="probabilityChart"></canvas>
+          </div>
+
+          <div class="probability-list" id="probabilityList"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let chart = null;
+
+      // Example data from the test set
+      const examples = {
+        1: {
+          CDRSUM: 0.0,
+          CDRGLOB: 0.0,
+          AMYLPET: 0.0,
+          APOE: 1.0,
+          PTAU_217_CONCNTRTN: 0.260585,
+          HVLT_DR: 9.0,
+          LASSI_B_CR1: 10.0,
+          LASSI_B_CR2: 12.0,
+        },
+        2: {
+          CDRSUM: 2.0,
+          CDRGLOB: 0.5,
+          AMYLPET: 0.0,
+          APOE: 0.0,
+          PTAU_217_CONCNTRTN: 1.42901,
+          HVLT_DR: 6.0,
+          LASSI_B_CR1: 8.0,
+          LASSI_B_CR2: 12.0,
+        },
+        3: {
+          CDRSUM: 6.0,
+          CDRGLOB: 1.0,
+          AMYLPET: 1.0,
+          APOE: 1.0,
+          PTAU_217_CONCNTRTN: 1.462719,
+          HVLT_DR: 0.0,
+          LASSI_B_CR1: 2.0,
+          LASSI_B_CR2: 2.0,
+        },
+      };
+
+      async function loadExample(num) {
+        const example = examples[num];
+        for (const [key, value] of Object.entries(example)) {
+          document.getElementById(key).value = value;
+        }
+
+        // Automatically submit the form to show the pie chart
+        const form = document.getElementById("predictionForm");
+        const submitEvent = new Event("submit", {
+          cancelable: true,
+          bubbles: true,
+        });
+        form.dispatchEvent(submitEvent);
+      }
+
+      function clearForm() {
+        document.getElementById("predictionForm").reset();
+      }
+
+      document
+        .getElementById("predictionForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          // Hide previous results and errors
+          document.getElementById("predictionResult").style.display = "none";
+          document.getElementById("chartContainer").style.display = "none";
+          document.getElementById("probabilityList").style.display = "none";
+          document.getElementById("errorMessage").classList.remove("active");
+          document.getElementById("loading").classList.add("active");
+
+          // Gather form data
+          const formData = new FormData(e.target);
+          const data = {};
+          for (const [key, value] of formData.entries()) {
+            data[key] = parseFloat(value);
+          }
+
+          try {
+            // Send prediction request
+            const response = await fetch("/predict", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+              displayResults(result);
+            } else {
+              showError(result.error || "An error occurred");
+            }
+          } catch (error) {
+            showError("Failed to connect to the server");
+          } finally {
+            document.getElementById("loading").classList.remove("active");
+          }
+        });
+
+      function displayResults(result) {
+        // Show predicted class
+        document.getElementById("predictedClass").textContent =
+          result.predicted_class;
+        document.getElementById("predictionResult").style.display = "block";
+
+        // Prepare data for chart
+        const labels = result.probabilities.map((p) => p.label);
+        const probabilities = result.probabilities.map((p) => p.probability);
+
+        // Create pie chart
+        const ctx = document
+          .getElementById("probabilityChart")
+          .getContext("2d");
+
+        if (chart) {
+          chart.destroy();
+        }
+
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                data: probabilities,
+                backgroundColor: [
+                  "#667eea",
+                  "#764ba2",
+                  "#f093fb",
+                  "#4facfe",
+                  "#43e97b",
+                  "#fa709a",
+                ],
+                borderWidth: 2,
+                borderColor: "#fff",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  padding: 15,
+                  font: {
+                    size: 12,
+                  },
+                },
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    const label = context.label || "";
+                    const value = (context.parsed * 100).toFixed(2);
+                    return label + ": " + value + "%";
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        document.getElementById("chartContainer").style.display = "block";
+
+        // Display probability list
+        const probabilityList = document.getElementById("probabilityList");
+        probabilityList.innerHTML =
+          '<h3 style="margin-bottom: 15px; color: #667eea;">Probabilities:</h3>';
+
+        // Sort probabilities by value (highest first)
+        const sortedProbs = [...result.probabilities].sort(
+          (a, b) => b.probability - a.probability
+        );
+
+        sortedProbs.forEach((prob, index) => {
+          const item = document.createElement("div");
+          item.className = "probability-item" + (index === 0 ? " highest" : "");
+          item.innerHTML = `
+                    <span class="probability-label">${prob.label}</span>
+                    <span class="probability-value">${prob.percentage.toFixed(
+                      2
+                    )}%</span>
+                `;
+          probabilityList.appendChild(item);
+        });
+
+        probabilityList.style.display = "block";
+      }
+
+      function showError(message) {
+        const errorElement = document.getElementById("errorMessage");
+        errorElement.textContent = message;
+        errorElement.classList.add("active");
+      }
+    </script>
+  </body>
+</html>

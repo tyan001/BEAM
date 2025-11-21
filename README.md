@@ -9,7 +9,7 @@ BEAM-ML (Blood & Exam Assessment Model using Machine Learning) is a machine lear
 - 📊 Cognitive examination results
 - 🔬 Clinical measurements
 
-Our model aims to enable early detection and intervention for cognitive health issues.
+Our goal is to enable early detection and intervention for cognitive health issues through the use of Machine Learning.
 
 ## 🔐 Privacy-First Approach
 
@@ -22,6 +22,16 @@ This repository uses a **synthetic dataset** generated from the original 1FL ADR
 - Fully shareable for research and education
 
 We specifically employed **CTGAN** (Conditional Tabular GAN) for synthetic data generation, ensuring high-quality, realistic samples while maintaining complete confidentiality.
+
+## 🎯 Project Goal & Baseline Performance
+
+**Important Context:** This feature search project aims to identify the best feature combinations based on what was achieved with the original dataset:
+
+- 📊 **Original Dataset Size**: ~2,200 samples
+- 🎯 **Six-Class Classification**: ~70% F1 score on test data
+- ⚡ **Combined five-class classification**: ~80% F1 score on test data
+
+The feature search explores various biomarker and cognitive score combinations to **replicate and optimize these results** using the synthetic dataset. The goal is to find the optimal set of features that can achieve comparable performance while maintaining model interpretability.
 
 ## 📁 Repository Structure
 ```
@@ -82,8 +92,13 @@ python feature_search.py
 If you need to generate new synthetic data using CTGAN:
 
 ```bash
-# Generate synthetic data
-python scripts/CTGAN/generate_data.py
+# Generate synthetic data (preserves original distribution)
+
+python scripts/CTGAN/generate_data.py --model scripts/CTGAN/CTGAN_models/ctgan_model_small_model.pkl --n_samples 10000
+
+# Generate synthetic data (balanced classes)
+python generate_data.py --balance -n_samples 10000
+
 ```
 
 
