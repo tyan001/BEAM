@@ -12,7 +12,6 @@ SELECTED_FEATURES = [
     'MMSE', 'CDRSUM', 'CDRGLOB', 'HVLT_DR', 'LASSI_B_CR2', 'APOE', 'AMYLPET'
 ]
 
-
 def preprocess_data(df, target_col='FL_UDSD', diagnosis_order=None):
     """
     Preprocess the data and prepare it for modeling.

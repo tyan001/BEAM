@@ -126,8 +126,8 @@ python train_specific_model.py --model lr --output-dir models
 - Evaluates model performance on train/test splits
 - Saves the trained model to `models/rf.pkl` (or `models/lr.pkl` for logistic regression)
 - The output folder contains:
-  - Trained model as a pickle file
-  - the testing dataset CSV to use as example
+  - Trained model information as a pickle file
+  - The testing dataset CSV to use as example
   - Feature importance/coefficients
 
 ### Running the Web Application
