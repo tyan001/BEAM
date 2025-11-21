@@ -7,7 +7,7 @@ from pathlib import Path
 app = Flask(__name__)
 
 # Load the trained model
-MODEL_PATH = 'models/random_forest_8features.pkl'
+MODEL_PATH = 'models/rf.pkl'
 
 with open(MODEL_PATH, 'rb') as f:
     model_info = pickle.load(f)
@@ -16,9 +16,25 @@ model = model_info['model']
 features = model_info['features']
 diagnosis_order = model_info['diagnosis_order']
 
+# Feature descriptions for better UI labels
+FEATURE_DESCRIPTIONS = {
+    'MMSE': 'Mini-Mental State Examination (0-30)',
+    'CDRSUM': 'Clinical Dementia Rating Sum of Boxes (0-18)',
+    'CDRGLOB': 'Clinical Dementia Rating Global Score (0-3)',
+    'HVLT_DR': 'Hopkins Verbal Learning Test - Delayed Recall',
+    'LASSI_A_CR2': 'LASSI-A Cued Recall 2',
+    'LASSI_B_CR1': 'LASSI-B Cued Recall 1',
+    'APOE': 'APOE Genotype (0, 1, or 2)',
+    'PTAU_217_CONCNTRTN': 'P-tau 217 Concentration',
+    'AMYLPET': 'Amyloid PET Status (0 or 1)'
+}
+
 @app.route('/')
 def home():
-    return render_template('index.html', features=features, diagnosis_order=diagnosis_order)
+    return render_template('index.html',
+                         features=features,
+                         diagnosis_order=diagnosis_order,
+                         feature_descriptions=FEATURE_DESCRIPTIONS)
 
 @app.route('/predict', methods=['POST'])
 def predict():

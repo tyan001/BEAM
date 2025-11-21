@@ -268,95 +268,19 @@
           </div>
 
           <form id="predictionForm">
+            {% for feature in features %}
             <div class="form-group">
-              <label for="CDRSUM">CDRSUM</label>
+              <label for="{{ feature }}">{{ feature }}</label>
               <input
                 type="number"
-                step="0.01"
-                id="CDRSUM"
-                name="CDRSUM"
+                step="any"
+                id="{{ feature }}"
+                name="{{ feature }}"
                 required
               />
-              <small>Clinical Dementia Rating Sum of Boxes (0-18)</small>
+              <small>{{ feature_descriptions.get(feature, 'Feature value') }}</small>
             </div>
-
-            <div class="form-group">
-              <label for="CDRGLOB">CDRGLOB</label>
-              <input
-                type="number"
-                step="0.01"
-                id="CDRGLOB"
-                name="CDRGLOB"
-                required
-              />
-              <small>Clinical Dementia Rating Global Score (0-3)</small>
-            </div>
-
-            <div class="form-group">
-              <label for="AMYLPET">AMYLPET</label>
-              <input
-                type="number"
-                step="1"
-                id="AMYLPET"
-                name="AMYLPET"
-                required
-              />
-              <small>Amyloid PET Status (0 or 1)</small>
-            </div>
-
-            <div class="form-group">
-              <label for="APOE">APOE</label>
-              <input type="number" step="1" id="APOE" name="APOE" required />
-              <small>APOE Genotype (0,1, or 2)</small>
-            </div>
-
-            <div class="form-group">
-              <label for="PTAU_217_CONCNTRTN">PTAU_217_CONCNTRTN</label>
-              <input
-                type="number"
-                step="0.000001"
-                id="PTAU_217_CONCNTRTN"
-                name="PTAU_217_CONCNTRTN"
-                required
-              />
-              <small>P-tau 217 Concentration</small>
-            </div>
-
-            <div class="form-group">
-              <label for="HVLT_DR">HVLT_DR</label>
-              <input
-                type="number"
-                step="0.01"
-                id="HVLT_DR"
-                name="HVLT_DR"
-                required
-              />
-              <small>Hopkins Verbal Learning Test - Delayed Recall</small>
-            </div>
-
-            <div class="form-group">
-              <label for="LASSI_B_CR1">LASSI_B_CR1</label>
-              <input
-                type="number"
-                step="0.01"
-                id="LASSI_B_CR1"
-                name="LASSI_B_CR1"
-                required
-              />
-              <small>LASSI-B Cued Recall 1</small>
-            </div>
-
-            <div class="form-group">
-              <label for="LASSI_B_CR2">LASSI_B_CR2</label>
-              <input
-                type="number"
-                step="0.01"
-                id="LASSI_B_CR2"
-                name="LASSI_B_CR2"
-                required
-              />
-              <small>LASSI-B Cued Recall 2</small>
-            </div>
+            {% endfor %}
 
             <button type="submit" class="btn-predict">Predict Diagnosis</button>
           </form>
@@ -390,44 +314,53 @@
     <script>
       let chart = null;
 
+      // Available features from the model
+      const modelFeatures = {{ features|tojson }};
+
       // Example data from the test set
       const examples = {
         1: {
+          MMSE: 29.0,
           CDRSUM: 0.0,
           CDRGLOB: 0.0,
-          AMYLPET: 0.0,
+          HVLT_DR: 9.0,
+          LASSI_A_CR2: 11.0,
+          LASSI_B_CR1: 10.0,
           APOE: 1.0,
           PTAU_217_CONCNTRTN: 0.260585,
-          HVLT_DR: 9.0,
-          LASSI_B_CR1: 10.0,
-          LASSI_B_CR2: 12.0,
         },
         2: {
+          MMSE: 27.0,
           CDRSUM: 2.0,
           CDRGLOB: 0.5,
-          AMYLPET: 0.0,
+          HVLT_DR: 6.0,
+          LASSI_A_CR2: 9.0,
+          LASSI_B_CR1: 8.0,
           APOE: 0.0,
           PTAU_217_CONCNTRTN: 1.42901,
-          HVLT_DR: 6.0,
-          LASSI_B_CR1: 8.0,
-          LASSI_B_CR2: 12.0,
         },
         3: {
+          MMSE: 20.0,
           CDRSUM: 6.0,
           CDRGLOB: 1.0,
-          AMYLPET: 1.0,
+          HVLT_DR: 0.0,
+          LASSI_A_CR2: 3.0,
+          LASSI_B_CR1: 2.0,
           APOE: 1.0,
           PTAU_217_CONCNTRTN: 1.462719,
-          HVLT_DR: 0.0,
-          LASSI_B_CR1: 2.0,
-          LASSI_B_CR2: 2.0,
         },
       };
 
       async function loadExample(num) {
         const example = examples[num];
-        for (const [key, value] of Object.entries(example)) {
-          document.getElementById(key).value = value;
+        // Only populate fields that are in the model's features
+        for (const feature of modelFeatures) {
+          if (example.hasOwnProperty(feature)) {
+            const element = document.getElementById(feature);
+            if (element) {
+              element.value = example[feature];
+            }
+          }
         }
 
         // Automatically submit the form to show the pie chart
