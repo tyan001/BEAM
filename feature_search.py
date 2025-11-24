@@ -354,44 +354,11 @@ if __name__ == "__main__":
     # Load data
     df = pd.read_csv('data/synthetic_data.csv')
     
-    group_strategy = "original"  # Change this to "scd_impaired" or "nc_impaired" as needed
+    group_strategy = "nc_impaired"  # Change this to "scd_impaired" or "nc_impaired" as needed
     
-    diagnosis_order, combination_map = get_diagnosis_config(grouping_strategy="original")
+    diagnosis_order, combination_map = get_diagnosis_config(grouping_strategy=group_strategy)
     
-    # # Preprocess data
-    # diagnosis_order = ['Normal cognition', 'Subjective Cognitive Decline', 'Impaired Not SCD/MCI',
-    #                    'Early MCI', 'Late MCI', 'Dementia']
-    
-    # # Combine categories as needed
-    # # For example, if you want to combine 'Subjective Cognitive Decline' and 'Impaired Not SCD/MCI' into a single category called 'SCD/Impaired', you can do that as follows:
-    # # combination_map = {
-    # # 'SCD/Impaired': ['Subjective Cognitive Decline', 'Impaired Not SCD/MCI'],
-    # # }
-    
-    # # diagnosis_order = [
-    # #     'Normal cognition', 
-    # #     'SCD/Impaired',
-    # #     'Early MCI', 
-    # #     'Late MCI', 
-    # #     'Dementia'
-    # # ]
-    
-    # # df = combine_categories(df, combination_map, target_col='FL_UDSD')
-    # ##################################################################### 
-    # combination_map = {
-    # 'NC/Impaired': ['Normal cognition', 'Impaired Not SCD/MCI'],
-    # }
-    
-    # diagnosis_order = [
-    #     'NC/Impaired', 
-    #     'Subjective Cognitive Decline',
-    #     'Early MCI', 
-    #     'Late MCI', 
-    #     'Dementia'
-    # ]
-    
-    # df = combine_categories(df, combination_map, target_col='FL_UDSD')
-    # #####################################################################
+    df = combine_categories(df, combination_map=combination_map, target_col='FL_UDSD')
     
     processed_df = preprocess_data(df, target_col='FL_UDSD', diagnosis_order=diagnosis_order)
     processed_df.dropna(inplace=True) # Drop rows with missing values after preprocessing. Only complete cases will be used for feature search.

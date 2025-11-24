@@ -9,7 +9,7 @@ from pathlib import Path
 
 # Define the specific features to use
 SELECTED_FEATURES = [
-    'MMSE', 'CDRSUM', 'CDRGLOB', 'HVLT_DR', 'LASSI_B_CR2', 'APOE', 'AMYLPET'
+    'MMSE', 'CDRSUM', 'CDRGLOB', 'HVLT_DR', 'LASSI_A_CR2', 'LASSI_B_CR1', 'AMYLPET', 'PTAU_217_CONCNTRTN'
 ]
 
 def preprocess_data(df, target_col='FL_UDSD', diagnosis_order=None):
@@ -31,6 +31,88 @@ def preprocess_data(df, target_col='FL_UDSD', diagnosis_order=None):
 
     return filter_df
 
+def get_diagnosis_config(grouping_strategy: str = "original"):
+    """
+    Get diagnosis order and combination map based on grouping strategy.
+    
+    Parameters:
+    -----------
+    grouping_strategy : str
+        "original" - Original 6 categories (no combination)
+        "scd_impaired" - Combine SCD and Impaired Not SCD/MCI
+        "nc_impaired" - Combine Normal Cognition and Impaired Not SCD/MCI
+    
+    Returns:
+    --------
+    tuple: (diagnosis_order, combination_map)
+    """
+    configs = {
+        "original": {
+            'diagnosis_order': [
+                'Normal cognition', 
+                'Subjective Cognitive Decline', 
+                'Impaired Not SCD/MCI',
+                'Early MCI', 
+                'Late MCI', 
+                'Dementia'
+            ],
+            'combination_map': None
+        },
+        "scd_impaired": {
+            'diagnosis_order': [
+                'Normal cognition', 
+                'SCD/Impaired',
+                'Early MCI', 
+                'Late MCI', 
+                'Dementia'
+            ],
+            'combination_map': {
+                'SCD/Impaired': ['Subjective Cognitive Decline', 'Impaired Not SCD/MCI']
+            }
+        },
+        "nc_impaired": {
+            'diagnosis_order': [
+                'NC/Impaired', 
+                'Subjective Cognitive Decline',
+                'Early MCI', 
+                'Late MCI', 
+                'Dementia'
+            ],
+            'combination_map': {
+                'NC/Impaired': ['Normal cognition', 'Impaired Not SCD/MCI']
+            }
+        }
+    }
+    
+    if grouping_strategy not in configs:
+        raise ValueError(f"Invalid grouping strategy: '{grouping_strategy}'. Must be one of: {list(configs.keys())}")
+    
+    config = configs[grouping_strategy]
+    return config['diagnosis_order'], config['combination_map']
+
+
+def combine_categories(df: pd.DataFrame, combination_map: dict, target_col: str = 'FL_UDSD') -> pd.DataFrame:
+    """
+    Combine multiple categories in the target column into single categories.
+    
+    Args:
+        df: Input dataframe
+        target_col: Column containing categories to combine
+        combination_map: Dictionary where keys are new category names and values are lists of 
+                        categories to combine into that new category.
+                        Example: {'SCD/Impaired': ['Subjective Cognitive Decline', 'Impaired Not SCD/MCI'],
+                                 'Normal/SCD': ['Normal cognition', 'Subjective Cognitive Decline']}
+    
+    Returns:
+        pd.DataFrame: DataFrame with combined categories
+    """
+    df = df.copy()
+    
+    # Apply each combination
+    for new_category, old_categories in combination_map.items():
+        df[target_col] = df[target_col].replace(old_categories, new_category)
+    
+    return df
 
 def train_model(features_list, model_type='rf', output_dir='models'):
     """
@@ -46,17 +128,15 @@ def train_model(features_list, model_type='rf', output_dir='models'):
     df = pd.read_csv('data/synthetic_data.csv')
 
     # Diagnosis order
-    diagnosis_order = [
-        'Normal cognition',
-        'Subjective Cognitive Decline',
-        'Impaired Not SCD/MCI',
-        'Early MCI',
-        'Late MCI',
-        'Dementia'
-    ]
+    group_strategy = "nc_impaired"  # Change this to "scd_impaired" or "nc_impaired" as needed
+    
+    diagnosis_order, combination_map = get_diagnosis_config(grouping_strategy=group_strategy)
+    
+    df = combine_categories(df, combination_map=combination_map, target_col='FL_UDSD') 
 
     # Preprocess
     print("Preprocessing data...")
+    
     processed_df = preprocess_data(
         df, target_col='FL_UDSD', diagnosis_order=diagnosis_order)
 

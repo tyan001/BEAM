@@ -24,6 +24,7 @@ FEATURE_DESCRIPTIONS = {
     'HVLT_DR': 'Hopkins Verbal Learning Test - Delayed Recall',
     'LASSI_A_CR2': 'LASSI-A Cued Recall 2',
     'LASSI_B_CR1': 'LASSI-B Cued Recall 1',
+    'LASSI_B_CR2': 'LASSI-B Cued Recall 2',
     'APOE': 'APOE Genotype (0, 1, or 2)',
     'PTAU_217_CONCNTRTN': 'P-tau 217 Concentration',
     'AMYLPET': 'Amyloid PET Status (0 or 1)'
@@ -46,9 +47,19 @@ def predict():
 
         # Create input array in the correct feature order
         input_data = []
+        missing_features = []
         for feature in features:
-            value = float(data[feature])
-            input_data.append(value)
+            if feature not in data or data[feature] is None or data[feature] == '':
+                missing_features.append(feature)
+            else:
+                try:
+                    value = float(data[feature])
+                    input_data.append(value)
+                except (ValueError, TypeError) as e:
+                    return jsonify({'error': f'Invalid value for {feature}: {data[feature]}. Must be a number.'}), 400
+
+        if missing_features:
+            return jsonify({'error': f'Missing required features: {", ".join(missing_features)}'}), 400
 
         # Convert to numpy array and reshape for prediction
         input_array = np.array(input_data).reshape(1, -1)
@@ -61,6 +72,12 @@ def predict():
         predicted_label = diagnosis_order[predicted_class]
 
         # Create response with probabilities for each class
+        # Ensure we only iterate through the classes that the model actually predicts
+        num_classes = min(len(probabilities), len(diagnosis_order))
+
+        if len(probabilities) != len(diagnosis_order):
+            print(f"Warning: Model returns {len(probabilities)} classes but diagnosis_order has {len(diagnosis_order)} classes")
+
         result = {
             'predicted_class': predicted_label,
             'predicted_class_code': int(predicted_class),
@@ -70,7 +87,7 @@ def predict():
                     'probability': float(probabilities[i]),
                     'percentage': float(probabilities[i] * 100)
                 }
-                for i in range(len(diagnosis_order))
+                for i in range(num_classes)
             ]
         }
 
