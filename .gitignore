@@ -14,3 +14,4 @@ archive/
 .ruff_cache/
 .vscode
 *results
+/data/Cardio_blood.csv

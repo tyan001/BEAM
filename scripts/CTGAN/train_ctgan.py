@@ -5,7 +5,13 @@ from sdv.metadata import Metadata
 from sdv.evaluation.single_table import evaluate_quality
 from typing import List, Dict, Optional, Tuple
 import joblib
+from rdt.transformers import FloatFormatter
 
+
+
+def round_to_half(value):
+    """Round a value to the nearest 0.5 increment."""
+    return np.round(value * 2) / 2
 
 
 def train_synthesizer(df: pd.DataFrame, metadata: Metadata, config: Dict, enable_gpu: bool = False) -> CTGANSynthesizer:
@@ -36,7 +42,7 @@ def train_synthesizer(df: pd.DataFrame, metadata: Metadata, config: Dict, enable
 
 if __name__ == "__main__":
 
-    df = pd.read_csv("../Data/Cardio_blood.csv")
+    df = pd.read_csv("../../data/Cardio_blood.csv")
     feature_cols = ['FL_MMSE', 'CDRSUM', 'CDRGLOB', 'HVLT_DR', 'LASSI_A_CR2', 'LASSI_B_CR1', 'LASSI_B_CR2',
                     'COMBINED_NE4S', 'AMYLPET',
                     'PTAU_217_CONCNTRTN',
@@ -48,6 +54,13 @@ if __name__ == "__main__":
 
     metadata = Metadata.detect_from_dataframe(df)
     # metadata.update_column(column_name='PTID', sdtype='categorical')
+
+    # Set CDRGLOB as categorical
+    metadata.update_column(
+        column_name='CDRGLOB',
+        sdtype='categorical'
+    )
+
     metadata.save_to_json("metadata.json", mode="overwrite")
     CONFIGS = {
         "baseline": {
@@ -112,9 +125,13 @@ if __name__ == "__main__":
         print(f"Training CTGAN with configuration: {config_name}")
         synthesizer = train_synthesizer(df, metadata, config, enable_gpu=True)
         synthetic_data = synthesizer.sample(len(df))
+
+        # Post-process CDRSUM to ensure 0.5 increments
+        synthetic_data['CDRSUM'] = synthetic_data['CDRSUM'].apply(round_to_half)
+
         quality_report = evaluate_quality(df, synthetic_data, metadata)
 
-        synthesizer.save(f"ctgan_model_{config_name}.pkl")
+        joblib.dump(synthesizer, f"models/ctgan_model_{config_name}.joblib")
         
         # Collect all metrics
         metrics = {

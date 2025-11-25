@@ -2,10 +2,16 @@ import pickle
 import argparse
 import pandas as pd
 from sdv.sampling import Condition
+import numpy as np
+import joblib
+
+def round_to_half(value):
+    """Round a value to the nearest 0.5 increment."""
+    return np.round(value * 2) / 2
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate synthetic data using a trained CTGAN model')
-    parser.add_argument('--model', type=str, default='ctgan_model_small_model.pkl',
+    parser.add_argument('--model', type=str, default='ctgan_model_baseline.joblib',
                         help='Path to the pickled CTGAN model file')
     parser.add_argument('--n_samples', type=int, default=10000,
                         help='Number of synthetic samples to generate')
@@ -19,7 +25,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     with open(args.model, 'rb') as f:
-        model = pickle.load(f)
+        model = joblib.load(f)
 
     if args.balance:
         # Generate balanced synthetic data
@@ -64,12 +70,13 @@ if __name__ == "__main__":
     else:
         # Original behavior: generate unbalanced data
         synthetic_data = model.sample(args.n_samples)
+        
 
     synthetic_data.rename(columns={
         'FL_MMSE': 'MMSE',
         'COMBINED_NE4S': "APOE"
     }, inplace=True)
-
+    synthetic_data['CDRSUM'] = synthetic_data['CDRSUM'].apply(round_to_half)
     synthetic_data.to_csv(args.output, index=False)
 
     # Print summary
