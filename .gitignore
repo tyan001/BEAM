@@ -10,7 +10,7 @@ wheels/
 uv.lock
 # Files and Folders
 archive/
-*CLAUDE.md
+*claude.md
 .ruff_cache/
 .vscode
 *results
