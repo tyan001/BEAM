@@ -15,3 +15,4 @@ archive/
 .vscode
 *results
 /data/Cardio_blood.csv
+/data/processed/
