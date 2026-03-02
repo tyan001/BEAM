@@ -23,7 +23,7 @@ We specifically employed **CTGAN** (Conditional Tabular GAN) to generate synthet
 
 **Important Context:** This feature search project aims to identify the best feature combinations based on what was achieved with the original dataset:
 
-- 📊 **Original Dataset Size**: ~2,200 samples
+- 📊 **Original Dataset Size**: ~2,125 samples
 - 🎯 **Six-Class Classification**: ~70% F1 score on test data
 - ⚡ **Combined five-class classification**: ~80% F1 score on test data
 
@@ -156,5 +156,6 @@ The application will:
 
 - 1FL ADRC for the original dataset structure
 - CTGAN developers for synthetic data generation tools
+
 
 
