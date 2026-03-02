@@ -9,19 +9,15 @@ BEAM-ML (Blood & Exam Assessment Model using Machine Learning) is a machine lear
 - 📊 Cognitive examination results
 - 🔬 Clinical measurements
 
-Our goal is to enable early detection and intervention for cognitive health issues through the use of Machine Learning.
+Our goal is to enable early detection and intervention for cognitive health issues through Machine Learning.
 
 ## 🔐 Privacy-First Approach
 
 This repository uses a **synthetic dataset** generated from the original 1FL ADRC dataset using a Generative Adversarial Network (GAN). 
 
 ✅ **What this means:**
-- Same statistical properties as real data
-- Identical data structure
-- **Zero risk** to patient privacy
-- Fully shareable for research and education
 
-We specifically employed **CTGAN** (Conditional Tabular GAN) for synthetic data generation, ensuring high-quality, realistic samples while maintaining complete confidentiality.
+We specifically employed **CTGAN** (Conditional Tabular GAN) to generate synthetic data, ensuring quality synthetic samples.
 
 ## 🎯 Project Goal & Baseline Performance
 
@@ -160,4 +156,5 @@ The application will:
 
 - 1FL ADRC for the original dataset structure
 - CTGAN developers for synthetic data generation tools
+
 
