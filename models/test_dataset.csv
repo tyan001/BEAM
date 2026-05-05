@@ -1,0 +1,252 @@
+MMSE,CDRSUM,CDRGLOB,HVLT_DR,LASSI_A_CR2,LASSI_B_CR1,AMYLPET,PTAU_217_CONCNTRTN,FL_UDSD_cat,FL_UDSD,predicted_cat,predicted_label,correct_prediction
+5,13.0,2.0,0.0,9.0,5.0,1.0,0.614516414,4,Dementia,4,Dementia,True
+27,5.0,0.5,2.0,10.0,4.0,1.0,0.61503841,3,Late MCI,3,Late MCI,True
+30,0.0,0.0,0.0,14.0,12.0,0.0,0.298356537,0,NC/Impaired,0,NC/Impaired,True
+30,1.0,0.0,6.0,13.0,8.0,1.0,0.610006045,0,NC/Impaired,1,Subjective Cognitive Decline,False
+28,0.0,0.0,5.0,15.0,6.0,1.0,0.599854436,0,NC/Impaired,0,NC/Impaired,True
+27,0.5,0.0,9.0,14.0,8.0,0.0,0.615861923,0,NC/Impaired,0,NC/Impaired,True
+26,5.5,0.5,0.0,8.0,3.0,1.0,0.615173096,4,Dementia,3,Late MCI,False
+23,6.0,0.0,0.0,11.0,3.0,0.0,0.611079573,4,Dementia,3,Late MCI,False
+28,3.5,0.5,2.0,11.0,4.0,0.0,0.286790686,3,Late MCI,3,Late MCI,True
+25,1.5,0.5,9.0,12.0,8.0,0.0,0.603234953,2,Early MCI,3,Late MCI,False
+30,0.0,0.0,8.0,14.0,10.0,0.0,0.186510717,0,NC/Impaired,0,NC/Impaired,True
+19,2.5,1.0,0.0,6.0,3.0,1.0,0.619626859,4,Dementia,4,Dementia,True
+29,4.0,0.0,0.0,15.0,5.0,0.0,0.620165748,0,NC/Impaired,0,NC/Impaired,True
+30,1.0,0.5,0.0,12.0,5.0,1.0,0.62149179,0,NC/Impaired,3,Late MCI,False
+23,4.0,0.5,5.0,12.0,7.0,1.0,0.616907279,3,Late MCI,3,Late MCI,True
+30,0.0,0.0,8.0,15.0,10.0,0.0,0.604763371,0,NC/Impaired,0,NC/Impaired,True
+28,0.0,0.0,6.0,13.0,8.0,0.0,0.600920333,0,NC/Impaired,0,NC/Impaired,True
+27,1.5,0.5,0.0,9.0,4.0,0.0,0.788029384,4,Dementia,3,Late MCI,False
+28,0.0,0.5,7.0,11.0,10.0,0.0,0.613094408,0,NC/Impaired,0,NC/Impaired,True
+29,1.0,0.0,6.0,12.0,8.0,1.0,0.320563335,0,NC/Impaired,0,NC/Impaired,True
+29,0.0,0.0,10.0,14.0,8.0,0.0,0.606129297,0,NC/Impaired,0,NC/Impaired,True
+28,0.5,0.5,0.0,13.0,4.0,0.0,0.598441773,1,Subjective Cognitive Decline,0,NC/Impaired,False
+24,14.5,1.0,5.0,11.0,6.0,1.0,0.603525696,4,Dementia,4,Dementia,True
+21,4.5,0.5,5.0,12.0,6.0,1.0,2.300689849,3,Late MCI,3,Late MCI,True
+30,0.0,0.0,12.0,15.0,8.0,0.0,0.610508847,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,1.5,0.5,0.0,9.0,7.0,1.0,0.214105811,0,NC/Impaired,1,Subjective Cognitive Decline,False
+29,6.0,0.5,1.0,11.0,6.0,1.0,0.284303304,2,Early MCI,2,Early MCI,True
+29,0.0,0.0,6.0,14.0,8.0,1.0,0.257204297,0,NC/Impaired,0,NC/Impaired,True
+29,0.0,0.0,0.0,13.0,9.0,0.0,0.392076587,0,NC/Impaired,0,NC/Impaired,True
+1,1.0,0.5,5.0,11.0,6.0,1.0,0.607091244,2,Early MCI,1,Subjective Cognitive Decline,False
+1,1.0,0.0,5.0,12.0,6.0,1.0,0.618858775,0,NC/Impaired,0,NC/Impaired,True
+27,0.0,0.0,7.0,11.0,7.0,1.0,0.608175123,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,0.5,0.0,9.0,14.0,9.0,1.0,0.286941567,0,NC/Impaired,0,NC/Impaired,True
+20,14.0,2.0,5.0,11.0,6.0,0.0,0.605616474,4,Dementia,4,Dementia,True
+29,1.0,0.5,5.0,11.0,3.0,1.0,0.611806786,2,Early MCI,0,NC/Impaired,False
+10,4.5,1.0,0.0,8.0,3.0,1.0,0.616900142,4,Dementia,4,Dementia,True
+17,6.5,1.0,0.0,3.0,2.0,1.0,0.610920733,4,Dementia,4,Dementia,True
+27,5.5,0.5,1.0,10.0,3.0,1.0,0.613236132,3,Late MCI,3,Late MCI,True
+30,2.5,0.5,5.0,13.0,8.0,1.0,0.602141219,0,NC/Impaired,1,Subjective Cognitive Decline,False
+26,0.0,0.0,4.0,11.0,8.0,0.0,0.61403104,0,NC/Impaired,0,NC/Impaired,True
+27,2.0,0.0,0.0,13.0,1.0,1.0,0.275818038,2,Early MCI,0,NC/Impaired,False
+22,11.5,0.5,5.0,11.0,6.0,1.0,0.616496488,4,Dementia,3,Late MCI,False
+28,1.0,0.0,7.0,11.0,8.0,0.0,0.259511483,1,Subjective Cognitive Decline,0,NC/Impaired,False
+25,1.0,0.5,5.0,12.0,6.0,1.0,0.217455943,3,Late MCI,2,Early MCI,False
+27,1.0,0.5,11.0,14.0,12.0,0.0,0.608979106,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+26,0.0,0.0,9.0,14.0,8.0,0.0,0.427292894,0,NC/Impaired,0,NC/Impaired,True
+27,0.0,0.0,0.0,15.0,5.0,1.0,0.607091779,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+0,2.5,0.5,5.0,11.0,6.0,1.0,0.605535387,0,NC/Impaired,1,Subjective Cognitive Decline,False
+29,4.0,0.5,0.0,6.0,5.0,1.0,0.939941832,3,Late MCI,3,Late MCI,True
+28,1.0,0.5,7.0,12.0,4.0,0.0,0.611838909,3,Late MCI,2,Early MCI,False
+29,0.0,0.0,7.0,11.0,5.0,0.0,0.609924059,0,NC/Impaired,0,NC/Impaired,True
+30,0.5,0.0,9.0,14.0,7.0,0.0,0.232225828,0,NC/Impaired,0,NC/Impaired,True
+28,1.5,0.0,6.0,11.0,5.0,1.0,0.335842717,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,0.0,0.0,8.0,14.0,8.0,0.0,0.607096578,0,NC/Impaired,0,NC/Impaired,True
+25,0.5,0.5,7.0,9.0,2.0,0.0,0.612573902,3,Late MCI,2,Early MCI,False
+30,0.0,0.0,7.0,14.0,8.0,1.0,0.59910663,1,Subjective Cognitive Decline,0,NC/Impaired,False
+29,0.5,0.0,9.0,15.0,10.0,0.0,0.613444594,0,NC/Impaired,0,NC/Impaired,True
+30,0.0,0.0,5.0,14.0,8.0,0.0,0.313466808,0,NC/Impaired,0,NC/Impaired,True
+24,1.0,0.0,11.0,15.0,9.0,0.0,0.606728997,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,0.0,0.0,10.0,15.0,8.0,1.0,0.615352301,1,Subjective Cognitive Decline,0,NC/Impaired,False
+27,6.5,0.5,0.0,8.0,4.0,0.0,1.542561364,3,Late MCI,3,Late MCI,True
+27,14.0,0.5,3.0,3.0,2.0,0.0,0.600722764,1,Subjective Cognitive Decline,4,Dementia,False
+29,0.0,0.0,2.0,13.0,9.0,0.0,0.614400179,0,NC/Impaired,0,NC/Impaired,True
+26,1.0,0.0,3.0,12.0,7.0,1.0,0.612214789,0,NC/Impaired,0,NC/Impaired,True
+29,0.0,0.0,12.0,15.0,8.0,0.0,0.604161013,0,NC/Impaired,0,NC/Impaired,True
+25,1.5,0.5,5.0,13.0,6.0,1.0,0.610238558,2,Early MCI,2,Early MCI,True
+29,4.0,0.5,0.0,13.0,12.0,0.0,0.709769368,3,Late MCI,3,Late MCI,True
+6,6.0,1.0,0.0,5.0,3.0,1.0,0.609408036,4,Dementia,4,Dementia,True
+26,3.5,0.5,5.0,12.0,6.0,0.0,0.613664008,2,Early MCI,3,Late MCI,False
+30,0.0,0.0,7.0,15.0,11.0,0.0,0.617043024,0,NC/Impaired,0,NC/Impaired,True
+30,1.0,0.5,10.0,12.0,6.0,0.0,0.601046419,0,NC/Impaired,1,Subjective Cognitive Decline,False
+1,1.5,0.5,5.0,12.0,6.0,1.0,0.607394935,2,Early MCI,1,Subjective Cognitive Decline,False
+30,0.5,0.0,5.0,14.0,6.0,0.0,0.611932177,0,NC/Impaired,0,NC/Impaired,True
+27,4.5,0.5,0.0,10.0,3.0,1.0,0.61483196,0,NC/Impaired,3,Late MCI,False
+27,5.5,1.0,8.0,8.0,5.0,0.0,0.61338043,4,Dementia,4,Dementia,True
+30,1.0,0.5,5.0,12.0,6.0,0.0,0.276649116,0,NC/Impaired,2,Early MCI,False
+30,0.0,0.5,7.0,14.0,10.0,1.0,0.613889101,2,Early MCI,1,Subjective Cognitive Decline,False
+26,1.0,0.5,5.0,11.0,7.0,1.0,0.60386572,0,NC/Impaired,1,Subjective Cognitive Decline,False
+30,0.5,0.0,8.0,12.0,9.0,0.0,0.620255584,0,NC/Impaired,0,NC/Impaired,True
+28,2.5,0.5,0.0,11.0,4.0,0.0,0.617340024,2,Early MCI,0,NC/Impaired,False
+22,0.0,0.0,5.0,12.0,6.0,0.0,0.613922448,0,NC/Impaired,0,NC/Impaired,True
+29,0.5,0.0,4.0,15.0,8.0,1.0,0.456849235,0,NC/Impaired,0,NC/Impaired,True
+30,1.0,0.5,8.0,14.0,8.0,0.0,0.608206746,0,NC/Impaired,2,Early MCI,False
+30,0.5,0.0,5.0,12.0,6.0,1.0,0.610612133,0,NC/Impaired,0,NC/Impaired,True
+30,0.5,0.0,0.0,14.0,11.0,0.0,0.620030699,0,NC/Impaired,0,NC/Impaired,True
+29,0.0,0.5,4.0,13.0,9.0,1.0,0.608319279,1,Subjective Cognitive Decline,2,Early MCI,False
+30,0.0,0.0,6.0,14.0,8.0,0.0,0.447395482,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,0.0,0.0,5.0,14.0,8.0,0.0,0.61485352,0,NC/Impaired,0,NC/Impaired,True
+22,6.0,0.5,0.0,10.0,7.0,0.0,0.253091875,3,Late MCI,3,Late MCI,True
+30,1.5,0.5,9.0,13.0,7.0,1.0,0.40336434,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+30,0.0,0.0,11.0,15.0,8.0,0.0,0.395631845,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+29,0.0,0.0,5.0,15.0,11.0,0.0,0.621318722,0,NC/Impaired,0,NC/Impaired,True
+26,1.5,0.5,5.0,12.0,7.0,0.0,0.607870075,1,Subjective Cognitive Decline,3,Late MCI,False
+26,4.0,0.5,1.0,10.0,2.0,0.0,0.611866178,3,Late MCI,3,Late MCI,True
+26,0.0,0.0,5.0,12.0,6.0,1.0,0.350514688,0,NC/Impaired,0,NC/Impaired,True
+27,1.5,0.5,9.0,15.0,5.0,0.0,0.611594689,1,Subjective Cognitive Decline,2,Early MCI,False
+6,7.0,2.0,1.0,9.0,0.0,1.0,0.610956362,4,Dementia,4,Dementia,True
+27,0.0,0.0,7.0,15.0,10.0,0.0,0.610216484,0,NC/Impaired,0,NC/Impaired,True
+29,0.5,0.0,8.0,14.0,5.0,1.0,0.601586112,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+28,3.0,0.5,5.0,11.0,6.0,1.0,0.606228676,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+28,3.0,0.0,0.0,11.0,5.0,0.0,0.607276069,4,Dementia,0,NC/Impaired,False
+8,9.0,2.0,0.0,3.0,7.0,1.0,0.610064898,4,Dementia,4,Dementia,True
+30,0.0,0.0,4.0,15.0,10.0,0.0,0.613350471,0,NC/Impaired,0,NC/Impaired,True
+30,0.0,0.0,7.0,14.0,9.0,0.0,1.181831367,1,Subjective Cognitive Decline,0,NC/Impaired,False
+29,1.0,0.0,10.0,15.0,10.0,0.0,0.610707887,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+30,0.0,0.0,7.0,13.0,8.0,0.0,0.30398425,0,NC/Impaired,0,NC/Impaired,True
+7,9.0,2.0,0.0,7.0,3.0,1.0,2.533393353,4,Dementia,4,Dementia,True
+29,0.5,0.0,12.0,14.0,9.0,0.0,0.607669345,1,Subjective Cognitive Decline,0,NC/Impaired,False
+25,6.5,0.5,0.0,12.0,7.0,0.0,0.611251954,3,Late MCI,3,Late MCI,True
+21,6.0,0.5,5.0,11.0,6.0,1.0,0.60930346,3,Late MCI,3,Late MCI,True
+30,0.0,0.0,11.0,15.0,8.0,0.0,0.608857858,1,Subjective Cognitive Decline,0,NC/Impaired,False
+23,1.0,0.5,5.0,7.0,7.0,1.0,0.604923904,2,Early MCI,3,Late MCI,False
+21,2.0,0.5,0.0,12.0,6.0,1.0,0.616908772,3,Late MCI,2,Early MCI,False
+30,3.5,0.0,9.0,15.0,9.0,0.0,0.608814438,0,NC/Impaired,1,Subjective Cognitive Decline,False
+29,3.5,0.5,5.0,12.0,3.0,1.0,0.597171199,3,Late MCI,1,Subjective Cognitive Decline,False
+21,6.5,1.0,0.0,8.0,1.0,1.0,0.608297334,3,Late MCI,4,Dementia,False
+30,0.0,0.0,10.0,15.0,10.0,0.0,0.614279285,0,NC/Impaired,1,Subjective Cognitive Decline,False
+29,1.0,0.0,8.0,13.0,10.0,0.0,0.607341731,0,NC/Impaired,1,Subjective Cognitive Decline,False
+28,0.0,0.0,6.0,11.0,8.0,1.0,0.612393788,0,NC/Impaired,0,NC/Impaired,True
+10,5.5,2.0,0.0,8.0,5.0,1.0,0.612574337,4,Dementia,4,Dementia,True
+26,1.0,0.0,5.0,11.0,3.0,0.0,0.600337634,0,NC/Impaired,0,NC/Impaired,True
+23,1.5,0.5,10.0,13.0,7.0,1.0,0.611466144,2,Early MCI,0,NC/Impaired,False
+29,0.5,0.0,12.0,14.0,10.0,0.0,0.558362565,0,NC/Impaired,0,NC/Impaired,True
+29,1.0,0.0,10.0,13.0,11.0,0.0,0.607113124,3,Late MCI,1,Subjective Cognitive Decline,False
+29,2.0,0.0,7.0,13.0,9.0,0.0,0.255475214,0,NC/Impaired,0,NC/Impaired,True
+30,1.0,0.0,7.0,11.0,6.0,0.0,0.610014225,2,Early MCI,0,NC/Impaired,False
+30,1.0,0.5,4.0,15.0,5.0,1.0,0.604361431,0,NC/Impaired,1,Subjective Cognitive Decline,False
+30,0.0,0.0,7.0,15.0,8.0,1.0,0.613574541,0,NC/Impaired,0,NC/Impaired,True
+28,0.5,0.5,5.0,14.0,5.0,0.0,0.29652178,3,Late MCI,1,Subjective Cognitive Decline,False
+29,0.0,0.0,5.0,14.0,8.0,0.0,0.624963093,0,NC/Impaired,0,NC/Impaired,True
+29,2.0,0.5,12.0,13.0,8.0,0.0,0.615305744,2,Early MCI,1,Subjective Cognitive Decline,False
+25,5.0,1.0,0.0,8.0,5.0,1.0,0.609825246,4,Dementia,4,Dementia,True
+26,0.0,0.0,5.0,11.0,10.0,1.0,0.292096385,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,0.5,0.0,5.0,11.0,8.0,1.0,0.612801489,0,NC/Impaired,0,NC/Impaired,True
+26,1.0,0.5,7.0,13.0,7.0,1.0,0.337740816,1,Subjective Cognitive Decline,2,Early MCI,False
+16,14.0,1.0,0.0,4.0,3.0,1.0,0.618510594,4,Dementia,4,Dementia,True
+29,0.5,0.0,9.0,12.0,9.0,0.0,0.614489146,0,NC/Impaired,0,NC/Impaired,True
+28,0.0,0.0,9.0,15.0,12.0,0.0,0.61056075,0,NC/Impaired,0,NC/Impaired,True
+24,1.0,0.5,0.0,10.0,7.0,1.0,0.441825772,3,Late MCI,3,Late MCI,True
+30,0.0,0.0,11.0,15.0,9.0,1.0,0.61038634,0,NC/Impaired,0,NC/Impaired,True
+26,4.5,0.5,0.0,10.0,3.0,0.0,0.602783705,2,Early MCI,3,Late MCI,False
+29,0.5,0.5,0.0,11.0,0.0,1.0,0.607232697,2,Early MCI,0,NC/Impaired,False
+30,0.0,0.0,10.0,14.0,8.0,0.0,0.602565821,0,NC/Impaired,0,NC/Impaired,True
+21,1.0,0.5,0.0,10.0,3.0,0.0,0.606765675,1,Subjective Cognitive Decline,3,Late MCI,False
+30,0.0,0.0,10.0,15.0,8.0,1.0,0.604848676,1,Subjective Cognitive Decline,0,NC/Impaired,False
+27,1.5,0.5,0.0,11.0,8.0,0.0,0.609064648,3,Late MCI,3,Late MCI,True
+4,10.0,2.0,0.0,1.0,2.0,1.0,0.614840145,4,Dementia,4,Dementia,True
+29,0.0,0.0,9.0,15.0,5.0,0.0,0.612392199,1,Subjective Cognitive Decline,0,NC/Impaired,False
+28,1.0,0.5,12.0,12.0,7.0,0.0,0.407658045,1,Subjective Cognitive Decline,2,Early MCI,False
+30,1.0,0.0,7.0,13.0,9.0,0.0,0.601466275,0,NC/Impaired,1,Subjective Cognitive Decline,False
+30,0.0,0.0,5.0,14.0,8.0,1.0,0.607507759,0,NC/Impaired,0,NC/Impaired,True
+30,1.0,0.5,5.0,8.0,2.0,1.0,0.598510147,2,Early MCI,1,Subjective Cognitive Decline,False
+29,1.0,0.5,10.0,12.0,7.0,1.0,1.262314252,2,Early MCI,1,Subjective Cognitive Decline,False
+25,5.5,0.5,0.0,10.0,3.0,1.0,0.620016792,3,Late MCI,3,Late MCI,True
+29,1.0,0.5,10.0,12.0,3.0,0.0,0.61166919,3,Late MCI,2,Early MCI,False
+27,1.5,0.5,0.0,11.0,5.0,1.0,0.700898002,1,Subjective Cognitive Decline,3,Late MCI,False
+24,1.5,0.5,0.0,14.0,8.0,0.0,0.535258101,3,Late MCI,2,Early MCI,False
+30,1.0,0.0,12.0,14.0,9.0,0.0,0.256582865,1,Subjective Cognitive Decline,0,NC/Impaired,False
+29,0.5,0.0,6.0,14.0,10.0,0.0,0.42384951,0,NC/Impaired,0,NC/Impaired,True
+27,4.5,0.0,0.0,9.0,5.0,1.0,0.609836645,1,Subjective Cognitive Decline,3,Late MCI,False
+30,0.5,0.5,5.0,13.0,2.0,0.0,0.605642958,2,Early MCI,0,NC/Impaired,False
+29,0.0,0.0,10.0,12.0,13.0,0.0,0.612126783,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,1.0,0.5,11.0,14.0,8.0,0.0,0.612694462,2,Early MCI,2,Early MCI,True
+30,0.0,0.0,9.0,13.0,10.0,0.0,0.61152475,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,1.0,0.5,9.0,13.0,8.0,0.0,0.615197267,0,NC/Impaired,1,Subjective Cognitive Decline,False
+30,0.0,0.0,8.0,14.0,8.0,0.0,0.612858965,0,NC/Impaired,0,NC/Impaired,True
+30,0.0,0.0,7.0,13.0,7.0,0.0,0.606301642,0,NC/Impaired,0,NC/Impaired,True
+10,12.5,2.0,0.0,4.0,3.0,1.0,0.611192687,4,Dementia,4,Dementia,True
+24,2.5,0.5,5.0,12.0,7.0,1.0,0.620537369,3,Late MCI,2,Early MCI,False
+29,3.5,0.5,6.0,9.0,8.0,0.0,0.202432935,3,Late MCI,3,Late MCI,True
+3,4.5,1.0,0.0,3.0,2.0,1.0,0.614993445,4,Dementia,4,Dementia,True
+28,6.5,0.5,0.0,10.0,5.0,0.0,0.25348823,3,Late MCI,3,Late MCI,True
+26,5.0,1.0,5.0,11.0,5.0,1.0,0.610114944,1,Subjective Cognitive Decline,4,Dementia,False
+28,0.0,0.0,6.0,13.0,6.0,0.0,0.61280839,0,NC/Impaired,0,NC/Impaired,True
+30,1.5,0.0,9.0,11.0,10.0,1.0,0.594511156,0,NC/Impaired,0,NC/Impaired,True
+20,4.5,1.0,0.0,10.0,2.0,1.0,0.607774595,4,Dementia,4,Dementia,True
+26,5.0,1.0,2.0,10.0,4.0,1.0,0.63462301,3,Late MCI,3,Late MCI,True
+20,7.0,0.5,0.0,5.0,6.0,1.0,0.61017793,4,Dementia,3,Late MCI,False
+16,1.0,0.5,5.0,11.0,6.0,1.0,0.605609326,3,Late MCI,3,Late MCI,True
+19,2.0,0.5,8.0,14.0,5.0,0.0,0.612442362,3,Late MCI,3,Late MCI,True
+26,2.5,0.0,5.0,11.0,10.0,0.0,0.610551697,3,Late MCI,0,NC/Impaired,False
+26,2.5,0.5,0.0,10.0,5.0,1.0,0.613568187,0,NC/Impaired,3,Late MCI,False
+29,1.0,0.0,7.0,13.0,7.0,0.0,0.610638462,0,NC/Impaired,1,Subjective Cognitive Decline,False
+27,0.0,0.0,5.0,13.0,9.0,1.0,0.607061119,0,NC/Impaired,0,NC/Impaired,True
+14,2.5,1.0,4.0,10.0,1.0,0.0,0.60428515,4,Dementia,4,Dementia,True
+25,0.0,0.0,4.0,12.0,6.0,1.0,0.611165023,0,NC/Impaired,0,NC/Impaired,True
+12,17.0,2.0,5.0,12.0,6.0,1.0,0.623422769,4,Dementia,4,Dementia,True
+29,0.5,0.5,8.0,14.0,6.0,0.0,0.60951577,0,NC/Impaired,1,Subjective Cognitive Decline,False
+27,1.0,0.0,5.0,14.0,6.0,1.0,0.252034553,0,NC/Impaired,0,NC/Impaired,True
+1,18.0,3.0,5.0,11.0,6.0,1.0,1.903127508,4,Dementia,1,Subjective Cognitive Decline,False
+26,3.0,2.0,0.0,10.0,3.0,0.0,0.61764379,4,Dementia,3,Late MCI,False
+30,0.5,0.5,9.0,14.0,9.0,0.0,0.613019908,0,NC/Impaired,1,Subjective Cognitive Decline,False
+28,3.5,0.5,5.0,14.0,8.0,0.0,0.603671462,2,Early MCI,1,Subjective Cognitive Decline,False
+30,0.5,0.0,12.0,14.0,8.0,1.0,0.616285189,0,NC/Impaired,0,NC/Impaired,True
+10,14.0,1.0,0.0,11.0,4.0,1.0,0.60724101,4,Dementia,4,Dementia,True
+25,0.0,0.0,5.0,12.0,6.0,1.0,0.612094676,1,Subjective Cognitive Decline,0,NC/Impaired,False
+25,0.0,0.0,6.0,13.0,4.0,1.0,0.606234897,0,NC/Impaired,0,NC/Impaired,True
+30,0.0,0.0,8.0,14.0,12.0,0.0,0.198491403,0,NC/Impaired,0,NC/Impaired,True
+30,0.0,0.0,11.0,13.0,8.0,0.0,0.601684952,0,NC/Impaired,0,NC/Impaired,True
+28,1.0,0.5,5.0,13.0,7.0,0.0,0.607023294,3,Late MCI,2,Early MCI,False
+27,4.5,1.0,2.0,7.0,8.0,1.0,0.272256577,4,Dementia,4,Dementia,True
+23,0.0,0.0,7.0,15.0,9.0,1.0,0.262881829,0,NC/Impaired,0,NC/Impaired,True
+26,0.0,0.5,5.0,11.0,6.0,1.0,1.462576693,1,Subjective Cognitive Decline,2,Early MCI,False
+27,11.0,1.0,0.0,8.0,5.0,0.0,0.605822968,4,Dementia,4,Dementia,True
+30,1.0,0.0,6.0,13.0,9.0,1.0,0.609745838,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+30,1.0,0.5,7.0,10.0,3.0,1.0,0.349210277,0,NC/Impaired,2,Early MCI,False
+28,0.0,0.5,9.0,15.0,5.0,1.0,0.618699382,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+30,1.0,0.5,6.0,10.0,7.0,0.0,0.427456294,2,Early MCI,1,Subjective Cognitive Decline,False
+1,0.5,0.0,5.0,12.0,6.0,0.0,0.610946222,0,NC/Impaired,0,NC/Impaired,True
+30,1.5,0.5,10.0,14.0,8.0,0.0,0.245603631,0,NC/Impaired,1,Subjective Cognitive Decline,False
+29,1.5,0.5,8.0,12.0,9.0,0.0,0.274626951,1,Subjective Cognitive Decline,2,Early MCI,False
+19,5.0,1.0,1.0,9.0,5.0,1.0,0.618559337,4,Dementia,4,Dementia,True
+30,0.0,0.0,9.0,14.0,10.0,0.0,0.603591687,0,NC/Impaired,0,NC/Impaired,True
+20,6.5,1.0,0.0,8.0,5.0,0.0,0.477912522,4,Dementia,4,Dementia,True
+30,1.5,0.5,5.0,12.0,8.0,1.0,0.598918252,0,NC/Impaired,1,Subjective Cognitive Decline,False
+30,0.0,0.0,11.0,13.0,9.0,0.0,0.612504635,0,NC/Impaired,0,NC/Impaired,True
+28,0.5,0.0,0.0,11.0,5.0,0.0,0.607590265,0,NC/Impaired,0,NC/Impaired,True
+30,0.0,0.0,8.0,15.0,8.0,0.0,0.610692559,0,NC/Impaired,0,NC/Impaired,True
+28,13.5,0.5,0.0,1.0,9.0,1.0,0.610482365,3,Late MCI,3,Late MCI,True
+29,1.0,0.5,8.0,14.0,4.0,0.0,0.607247759,0,NC/Impaired,2,Early MCI,False
+27,2.0,2.0,0.0,10.0,4.0,0.0,0.60779222,3,Late MCI,4,Dementia,False
+29,1.0,0.5,11.0,13.0,8.0,1.0,0.613312074,2,Early MCI,1,Subjective Cognitive Decline,False
+29,0.5,0.5,5.0,12.0,6.0,0.0,0.608491793,2,Early MCI,2,Early MCI,True
+26,0.5,1.0,8.0,14.0,13.0,1.0,0.605512026,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+30,0.0,0.0,5.0,14.0,6.0,1.0,0.452722898,1,Subjective Cognitive Decline,0,NC/Impaired,False
+30,0.5,0.0,5.0,14.0,11.0,0.0,0.605637125,0,NC/Impaired,0,NC/Impaired,True
+30,0.0,0.0,9.0,14.0,12.0,1.0,0.603394472,0,NC/Impaired,0,NC/Impaired,True
+27,1.0,0.0,8.0,14.0,3.0,1.0,0.61816497,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+30,0.5,0.0,5.0,14.0,6.0,1.0,0.612185728,0,NC/Impaired,0,NC/Impaired,True
+27,0.0,0.0,11.0,15.0,12.0,0.0,0.618520826,0,NC/Impaired,0,NC/Impaired,True
+27,0.0,0.0,8.0,13.0,10.0,1.0,0.607669691,0,NC/Impaired,0,NC/Impaired,True
+30,0.0,0.0,10.0,13.0,8.0,0.0,0.609671818,0,NC/Impaired,0,NC/Impaired,True
+26,0.0,0.0,6.0,12.0,6.0,1.0,0.325018159,0,NC/Impaired,0,NC/Impaired,True
+29,0.5,0.5,5.0,11.0,5.0,1.0,0.609595474,2,Early MCI,2,Early MCI,True
+26,2.0,0.5,6.0,12.0,7.0,1.0,0.237473923,3,Late MCI,2,Early MCI,False
+28,0.0,0.0,3.0,14.0,9.0,0.0,0.608029413,0,NC/Impaired,0,NC/Impaired,True
+30,0.5,0.0,11.0,15.0,10.0,0.0,0.348321848,0,NC/Impaired,0,NC/Impaired,True
+25,6.0,0.5,0.0,12.0,7.0,0.0,0.6146256,3,Late MCI,3,Late MCI,True
+30,1.0,0.5,8.0,14.0,9.0,0.0,0.599352834,1,Subjective Cognitive Decline,2,Early MCI,False
+24,0.0,0.0,6.0,13.0,12.0,0.0,0.611649731,0,NC/Impaired,0,NC/Impaired,True
+30,1.0,0.5,5.0,14.0,7.0,0.0,0.604783705,2,Early MCI,1,Subjective Cognitive Decline,False
+22,3.5,0.5,0.0,13.0,1.0,1.0,0.206926616,3,Late MCI,3,Late MCI,True
+8,18.0,3.0,5.0,12.0,6.0,0.0,1.759314724,4,Dementia,4,Dementia,True
+23,0.5,0.5,0.0,11.0,5.0,1.0,0.60711227,2,Early MCI,3,Late MCI,False
+30,1.0,0.5,4.0,14.0,8.0,0.0,0.613018624,1,Subjective Cognitive Decline,1,Subjective Cognitive Decline,True
+30,0.0,0.0,12.0,13.0,8.0,0.0,0.610728797,0,NC/Impaired,0,NC/Impaired,True
+30,2.5,0.5,7.0,12.0,3.0,0.0,0.599803081,2,Early MCI,2,Early MCI,True
+29,1.0,0.5,7.0,11.0,7.0,1.0,0.609803308,2,Early MCI,1,Subjective Cognitive Decline,False
+26,3.5,0.5,0.0,10.0,3.0,0.0,0.611329146,3,Late MCI,3,Late MCI,True
+23,1.0,0.5,7.0,12.0,7.0,0.0,0.603697158,1,Subjective Cognitive Decline,3,Late MCI,False
+27,4.0,0.0,0.0,13.0,3.0,0.0,0.608383925,1,Subjective Cognitive Decline,3,Late MCI,False

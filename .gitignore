@@ -8,11 +8,12 @@ wheels/
 # Virtual environments
 .venv
 uv.lock
+.python-version
 # Files and Folders
 archive/
 *claude.md
 .ruff_cache/
 .vscode
 *results
-/data/Cardio_blood.csv
-/data/processed/
+data/clinical
+claude
