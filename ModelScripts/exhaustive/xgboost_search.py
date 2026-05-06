@@ -1,10 +1,10 @@
-"""Exhaustive feature-subset search for LogisticRegression on clinical_preprocessed.csv."""
+"""Exhaustive feature-subset search for XGBoost on clinical_preprocessed.csv."""
 import sys
 import warnings
 from pathlib import Path
 
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+import xgboost as xgb
 from sklearn.model_selection import StratifiedGroupKFold
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -14,23 +14,30 @@ from utils import combine_categories, exhaustive_feature_search
 
 DATA_PATH = REPO_ROOT / "data" / "clinical" / "clinical_preprocessed.csv"
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
-REMOVE_FEATURES = ["CDRGLOB", "AMYLPET", "NACCETPR"]
+REMOVE_FEATURES = ["NACCETPR"]
 DROP_COLS = ["PTID", "VISITYR", "FL_UDSD"]
 
-COMBINE_MAP = {2: [2, 3]}
-RENUMBER_MAP = {1: 1, 2: 2, 4: 3, 5: 4, 6: 5}
+COMBINE_MAP = {"2": ["2", "3"]}
+RENUMBER_MAP = {"1": 1, "2": 2, "4": 3, "5": 4, "6": 5}
 
-RESULT_NAME_6CLASS = "lr_results.csv"
-RESULT_NAME_5CLASS = "lr_results_SCD_Imp.csv"
+RESULT_NAME_6CLASS = "xgb_results.csv"
+RESULT_NAME_5CLASS = "xgb_results_SCD_Imp.csv"
 
 
 def make_model():
-    return LogisticRegression(max_iter=3000, random_state=42)
+    return xgb.XGBClassifier(
+        n_estimators=100,
+        random_state=42,
+        objective="multi:softprob",
+        eval_metric="mlogloss",
+        tree_method="hist",
+        n_jobs=4,
+    )
 
 
 def run_search(df, result_name):
     X = df.drop(columns=DROP_COLS)
-    y = df["FL_UDSD"]
+    y = df["FL_UDSD"].astype(int) - 1  # xgboost wants 0-indexed int labels
     cv = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", message="y_pred contains classes not in y_true")
@@ -39,7 +46,7 @@ def run_search(df, result_name):
             groups=df["PTID"],
             cv=cv,
             estimator=make_model(),
-            min_features=1,
+            min_features=2,
             max_features=len(X.columns),
         )
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -54,8 +61,12 @@ def main():
 
     run_search(df_filter, RESULT_NAME_6CLASS)
 
-    df_combined = combine_categories(df_filter, combination_map=COMBINE_MAP, target_col="FL_UDSD")
-    df_combined["FL_UDSD"] = df_combined["FL_UDSD"].map(RENUMBER_MAP)
+    df_combined = combine_categories(
+        df_filter.assign(FL_UDSD=df_filter["FL_UDSD"].astype(str)),
+        combination_map=COMBINE_MAP,
+        target_col="FL_UDSD",
+    )
+    df_combined["FL_UDSD"] = df_combined["FL_UDSD"].map(RENUMBER_MAP).astype(int)
     run_search(df_combined, RESULT_NAME_5CLASS)
 
 

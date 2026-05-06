@@ -1,10 +1,10 @@
-"""Exhaustive feature-subset search for RandomForest on clinical_preprocessed.csv."""
+"""Exhaustive feature-subset search for LogisticRegression on clinical_preprocessed.csv."""
 import sys
 import warnings
 from pathlib import Path
 
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedGroupKFold
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -14,18 +14,18 @@ from utils import combine_categories, exhaustive_feature_search
 
 DATA_PATH = REPO_ROOT / "data" / "clinical" / "clinical_preprocessed.csv"
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
-REMOVE_FEATURES = ["CDRGLOB", "AMYLPET", "NACCETPR"]
+REMOVE_FEATURES = ["NACCETPR"]
 DROP_COLS = ["PTID", "VISITYR", "FL_UDSD"]
 
 COMBINE_MAP = {2: [2, 3]}
 RENUMBER_MAP = {1: 1, 2: 2, 4: 3, 5: 4, 6: 5}
 
-RESULT_NAME_6CLASS = "rf_results.csv"
-RESULT_NAME_5CLASS = "rf_results_SCD_Imp.csv"
+RESULT_NAME_6CLASS = "lr_results.csv"
+RESULT_NAME_5CLASS = "lr_results_SCD_Imp.csv"
 
 
 def make_model():
-    return RandomForestClassifier(n_estimators=250, random_state=42)
+    return LogisticRegression(max_iter=3000, random_state=42)
 
 
 def run_search(df, result_name):
@@ -39,7 +39,7 @@ def run_search(df, result_name):
             groups=df["PTID"],
             cv=cv,
             estimator=make_model(),
-            min_features=2,
+            min_features=1,
             max_features=len(X.columns),
         )
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)

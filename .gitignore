@@ -15,5 +15,5 @@ archive/
 .ruff_cache/
 .vscode
 *results
-data/clinical
+*/data/clinical
 claude
