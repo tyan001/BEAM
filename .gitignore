@@ -16,4 +16,5 @@ archive/
 .vscode
 *results
 */data/clinical
+*/data/ADNI
 claude
