@@ -47,53 +47,13 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import make_scorer, precision_score, recall_score
-from sklearn.model_selection import StratifiedGroupKFold, cross_validate,  StratifiedKFold
+from sklearn.model_selection import cross_validate,  StratifiedKFold
 
 import xgboost as xgb
 from catboost import CatBoostClassifier
 from utils.feature_group import load_feature_groups
 warnings.filterwarnings("ignore", category=UserWarning)
 
-
-# ---------------------------------------------------------------------------
-# Feature groups
-# ---------------------------------------------------------------------------
-# MRI_VOLUME = [
-#     "VOL_ENTRHNA_L", "VOL_ENTRHNA_R", "VOL_HIPP_L", "VOL_HIPP_R",
-#     "VOL_AMYG_L", "VOL_AMYG_R", "VOL_PRECUNE_L", "VOL_PRECUNE_R",
-#     "VOL_POST_CING_L", "VOL_POST_CING_R", "VOL_INF_PAR_L", "VOL_INF_PAR_R",
-#     "VOL_INF_TEMP_L", "VOL_INF_TEMP_R", "VOL_TEMP_PL_L", "VOL_TEMP_PL_R",
-#     "VOL_LAT_ORB_L", "VOL_LAT_ORB_R", "VOL_SUP_FRNT_L", "VOL_SUP_FRNT_R",
-#     "VOL_PRECENT_L", "VOL_PRECENT_R",
-#     "VOL_HIPP_SBCLM_HEAD_L", "VOL_HIPP_SBCLM_HEAD_R",
-#     "VOL_HIPP_SBCLM_BOD_L", "VOL_HIPP_SBCLM_BOD_R",
-#     "VOL_HIPP_PRESBCLM_HEAD_L", "VOL_HIPP_PRESBCLM_HEAD_R",
-#     "VOL_HIPP_PRESBCLM_BOD_L", "VOL_HIPP_PRESBCLM_BOD_R",
-#     "VOL_HIPP_CA1_HEAD_L", "VOL_HIPP_CA1_HEAD_R",
-#     "VOL_HIPP_CA1_BOD_L", "VOL_HIPP_CA1_BOD_R",
-# ]
-
-# MRI_THICKNESS = [
-#     "THK_ENTRHNA_L", "THK_ENTRHNA_R", "THK_PARAHIPP_L", "THK_PARAHIPP_R",
-#     "THK_PRECUNE_L", "THK_PRECUNE_R", "THK_POST_CING_L", "THK_POST_CING_R",
-#     "THK_INF_PAR_L", "THK_INF_PAR_R", "THK_INF_TEMP_L", "THK_INF_TEMP_R",
-#     "THK_TEMP_PL_L", "THK_TEMP_PL_R", "THK_LAT_ORB_L", "THK_LAT_ORB_R",
-#     "THK_ROST_MIDFRNT_L", "THK_ROST_MIDFRNT_R",
-#     "THK_CAUD_MIDFRNT_L", "THK_CAUD_MIDFRNT_R",
-#     "THK_SUP_FRNT_L", "THK_SUP_FRNT_R", "THK_PRECENT_L", "THK_PRECENT_R",
-# ]
-
-# FEATURE_GROUPS = {
-#     "INFO":           ["PTID", "VISITYR"],
-#     "CDRSUM":         ["CDRSUM"],
-#     "MMSE":           ["MMSE"],
-#     "HVLTDR":         ["HVLT_DR"],
-#     "LASSI":          ["LASSI_A_CR2", "LASSI_A_CR2_INT","LASSI_B_CR1", "LASSI_B_CR1_INT", "LASSI_B_CR2", "LASSI_B_CR2_INT"],
-#     "PLASMA":         ["PTAU_217_CONCNTRTN"],
-#     "APOE":           ["APOE4S"],
-#     "MRI":            MRI_VOLUME + MRI_THICKNESS,
-#     "TARGETS":        ["FL_UDSD", "NACCETPR"],
-# }
 
 FEATURE_GROUPS = load_feature_groups()
 
@@ -178,7 +138,7 @@ def make_model(model_name):
             tree_method="hist",
             n_jobs=1,  # CRITICAL: prevents oversubscription with loky workers
         )
-    if model_name == "cat":
+    if model_name == "catb":
         return CatBoostClassifier(
             iterations=300,
             depth=6,
